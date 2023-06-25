@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Coding Search Engine</title>
+  
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Ubuntu');
+    @import url('https://fonts.googleapis.com/css?family=Mukta');
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(90deg, #08f68f, #08bc4d);
+    
+      margin: 0;
+      padding: 0;
+    }
+
+    .header { font-family: 'Ubuntu', sans-serif;
+    font-size: 40px;
+      color: #092bee;
+      text-align: center;
+      transition: color 0.3s;
+    }
+
+    .header:hover {
+      color: #ff0000;
+    }
+
+    .form {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    form {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    label { font-family: 'Ubuntu', sans-serif;
+        font-size: 24px;
+      margin-right: 10px;
+      color: #333;
+      width: 250px;
+    }
+
+    input[type="text"] {
+     
+      padding: 5px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+  width: 300px;
+  background-clip: padding-box;
+  padding-right: 10px;
+  width: 300px;
+    }
+    #search-input {
+  width: 300px;
+}
+    input[type="submit"] {
+      padding: 5px 10px;
+      font-size: 16px;
+      background-color: #333333;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      padding-left: 10px;
+      cursor: pointer;
+  transform: translateX(5px);
+    }
+
+    .results {
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    .results-box {
+        background-image: linear-gradient(45deg, #e963f3, #d591f8);
+      padding: 10px;
+      border-radius: 10px;
+      width: 900px;
+    }
+
+    .results-box a {
+     height: 30px;
+      display: block;
+  margin-bottom: 5px;
+  padding: 10px;
+  background-color: #e0e0e0;
+  color: #333;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: transform 0.3s, background-color 0.3s;
+    }
+
+    .results-box a:hover {
+        transform: scale(1.01);
+  background-image: linear-gradient(45deg, #eae312, #f40fac);
+  color: #d11b6d;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <h1 class="header">CodeQuest</h1>
+  </div>
+  <div class="form">
+    <form method="POST">
+      <label for="search-input">Enter the Query:</label>
+      <input type="text" id="search-input" name="search">
+      <input type="submit" value="Search">
+    </form>
+  </div>
+  <div class="results">
+    <div class="results-box">
+      {% for result in results %}
+      {% set question_name = result['Question Link'].split("/")[-1].replace("-", " ").title() %}
+      <a href="{{ result['Question Link'] }}">{{ question_name }}</a>
+      {% endfor %}
+    </div>
+  </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
