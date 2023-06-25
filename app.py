@@ -123,7 +123,7 @@ def calc_docs_sorted_order(q_terms):
 
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'kalyan485858'
+app.config['SECRET_KEY'] = 'subrat384583'
 # query = input('Enter your query: ')
 # q_terms = [term.lower() for term in query.strip().split()]
 

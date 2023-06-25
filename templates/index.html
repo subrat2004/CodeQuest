@@ -1,150 +1,168 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Coding Search Engine</title>
-  
-
-  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-  <style>
-    @import url('https://fonts.googleapis.com/css?family=Ubuntu');
+  <head>
+    <title>CodeQuest</title>
+    <style>
+      /* CSS styles */
+      @import url('https://fonts.googleapis.com/css?family=Ubuntu');
     @import url('https://fonts.googleapis.com/css?family=Mukta');
     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&family=Ubuntu:wght@700&display=swap');
-    body {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      font-family: 'Roboto', sans-serif;
-      background: linear-gradient(90deg, #08f68f, #08bc4d);
-    
-      margin: 0;
-      padding: 0;
-    }
+      body {
+        font-family: 'Ubuntu', sans-serif;
+        background: linear-gradient(to right, #afa5e9,#dfbdde);
+      }
 
-    .header { font-family: 'Ubuntu', sans-serif;
-    font-size: 40px;
-      color: #092bee;
-      text-align: center;
-      transition: color 0.3s;
-    }
+      .header {
+        text-align: center;
+        margin-top: 40px;
+        margin-bottom: 20px;
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+        font-family: 'Ubuntu', sans-serif;
+        font-weight: 800;
+        font-size: 64px; /* Adjust the font size as desired */
+      }
 
-    .header:hover {
-      color: #ff0000;
-    }
+      .header::before,
+      .header::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: #b7333c;
+        transform: scaleX(0);
+        transition: transform 0.7s ease-in;
+      }
 
-    .form {
-      text-align: center;
-      margin-top: 20px;
-    }
+      .header::after {
+        left: auto;
+        right: 0;
+        transform-origin: right;
+      }
 
-    form {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+      .header:hover::before,
+      .header:hover::after {
+        transform: scaleX(1.02);
+      }
 
-    label { font-family: 'Ubuntu', sans-serif;
-        font-size: 24px;
-      margin-right: 10px;
-      color: #333;
-      width: 250px;
-    }
+      .header:hover {
+        color:#047947;
+      }
 
-    input[type="text"] {
-     
-      padding: 5px;
-  font-size: 16px;
-  border-radius: 8px;
-  border: none;
-  outline: none;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
-  width: 300px;
-  background-clip: padding-box;
-  padding-right: 10px;
-  width: 300px;
-    }
-    #search-input {
-  width: 300px;
+      .form {
+        margin-bottom: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      form {
+        display: flex;
+        align-items: center;
+      }
+
+      .form label {
+        margin-right: 10px;
+        font-family: 'Ubuntu' sans-serif;
+        font-size: 20px; /* Adjust the font size as desired */
+      }
+
+      .form input[type="text"] {
+        width: 300px;
+        padding: 5px;
+        border: 4px solid #ccc;
+        border-radius: 10px;
+        margin-right: 10px;
+        /* box-shadow: 0 0 10px #366cf3; */
+        transition: box-shadow 0.3s ease-in-out;
+      }
+
+      .form input[type="text"]:focus {
+  box-shadow: 0px 0px 20px #a0b4e5;
 }
-    input[type="submit"] {
-      padding: 5px 10px;
-      font-size: 16px;
-      background-color: #333333;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      padding-left: 10px;
-      cursor: pointer;
-  transform: translateX(5px);
-    }
 
-    .results {
-      display: flex;
-      justify-content: center;
-      margin-top: 30px;
-      align-items: flex-start;
-      overflow-y: auto;
-      height: 70vh;
-    }
 
-    .results-box {
-        background: linear-gradient(45deg, #e963f3, #d591f8);
-      padding: 25px;
-      border-radius: 10px;
-     width: 800px;
-     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  overflow-y: auto; 
-    }
+      .form input[type="submit"] {
+        padding: 10px 10px;
+        background-color: #fbfbfb;
+        color: #080000;
+        border: 0.5px solid black;
+        border-radius: 10px;
+        cursor: pointer;
+        font-family: 'Mukta', sans-serif;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+        transition: background-color 0.3s ease-in-out;
+      }
 
-    .results a {
-     height: 30px;
-      display: block;
-  margin-bottom: 10px;
-  padding: 20px;
-  background-color: #e0e0e0;
-  color: #333;
-  text-decoration: none;
-  border-radius: 5px;
-  transition: transform 0.3s, background-color 0.3s;
-  font-family: 'Roboto', sans-serif;
-    }
+      .form input[type="submit"]:hover {
+        background-color: #9dcae7;
+        color:blue;
+      }
 
-    .results a:hover {
-        transform: scale(1.01);
+      .results {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        overflow-y: auto;
+        height: 70vh; /* Set the height as a percentage of viewport height */
+      }
+
+      .results-box {
+        width: 800px; /* Adjust the width as desired */
+        padding: 25px;
+        background: linear-gradient(to right,#D739E3 ,#F5B1FF);
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        overflow-y: auto; /* Add a vertical scrollbar */
+      }
+
+      .results a {
+        display: block;
+        margin-bottom: 10px;
+        color:#0000A3;
+        text-decoration: none;
+        background-color: #ead7c8;
+        padding: 20px;
+        border-radius: 10px;
+        font-size: 25px; /* Adjust the font size as desired */
+        transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+        font-family: 'Roboto', sans-serif;
+      }
+      
+      .results a:hover {
         text-decoration: solid;
+        color: #b7333c;
+        transform: scale(1.05);
+        background: linear-gradient(45deg, #e3ecf1 0%,#64f7d2 100%);
         background-size: 200% auto;
-  background-position: left center;
-  transition: background-position 0.5s;
-  background-image: linear-gradient(45deg, #eae312, #f40fac);
-  color: #d11b6d;
-    }
-  </style>
-</head>
-<body>
-  <div>
-    <h1 class="header">CodeQuest</h1>
-  </div>
-  <div class="form">
-    <form method="POST">
-      <label for="search-input">Enter the Query:</label>
-      <input type="text" id="search-input" name="search">
-      <input type="submit" value="Search">
-    </form>
-  </div>
-  <div class="results">
-    <div class="results-box">
-      {% for result in results %}
-      {% set question_name = result['Question Link'].split("/")[-1].replace("-", " ").title() %}
-      <a href="{{ result['Question Link'] }}">{{ question_name }}</a>
-      {% endfor %}
+        background-position: left center;
+        transition: background-position 0.5s;
+      }
+    </style>
+  </head>
+  <body>
+    <div style="display: flex; justify-content: center;">
+      <h1 class="header">CodeQuest</h1>
     </div>
-  </div>
-</body>
+    <div class="form">
+      <form method="POST">
+        <label for="search-input" style="font-family: 'Roboto', sans-serif; font-size: 20px;">Enter the search term:</label>
+        {{ form.hidden_tag() }} {{ form.search(id="search-input") }} {{ form.submit() }}
+      </form>
+    </div>
+    <div class="results">
+      <div class="results-box">
+        {% for result in results %}
+        {% set question_name = result['Question Link'].split("/")[-1].replace("-", " ").title() %}
+        <a href="{{ result['Question Link'] }}">{{ question_name }}</a><br>
+        {% endfor %}
+      </div>
+    </div>
+  </body>
 </html>
-
-
-
 
 
 
