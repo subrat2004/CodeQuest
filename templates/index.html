@@ -64,7 +64,7 @@
         align-items: center;
       }
 
-      .form label {
+      .form label { font-family: 'Mukta'sans-serif;
         margin-right: 10px;
         font-family: 'Ubuntu' sans-serif;
         font-size: 20px; /* Adjust the font size as desired */
@@ -98,7 +98,7 @@
       }
 
       .form input[type="submit"]:hover {
-        background-color: #9dcae7;
+        background-color: #2f373c;
         color:blue;
       }
 
@@ -113,7 +113,7 @@
       .results-box {
         width: 800px; /* Adjust the width as desired */
         padding: 25px;
-        background: linear-gradient(to right,#D739E3 ,#F5B1FF);
+        background: linear-gradient(to right,#7cc99a ,#F5B1FF);
         border-radius: 10px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         overflow-y: auto; /* Add a vertical scrollbar */
@@ -149,7 +149,7 @@
     </div>
     <div class="form">
       <form method="POST">
-        <label for="search-input" style="font-family: 'Roboto', sans-serif; font-size: 20px;">Enter the search term:</label>
+        <label for="search-input" style="font-family: 'Roboto', sans-serif; font-size: 20px;">Enter your Query:</label>
         {{ form.hidden_tag() }} {{ form.search(id="search-input") }} {{ form.submit() }}
       </form>
     </div>
